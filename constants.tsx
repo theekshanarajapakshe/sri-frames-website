@@ -124,7 +124,7 @@ export const TEAM: TeamMember[] = [
     name: "Theekshana Rajapakshe",
     role: "Founder & Lead Strategist",
     bio: "Visionary leader with 5+ years of experience in helping local brands reach the global stage.",
-    imageUrl: "public/images/theekshana.png",
+    imageUrl: "/images/theekshana.png",
     specialties: ["Brand Strategy", "Project Management", "Business Growth"],
     experience: "5+ Years",
     motto: "Leading with vision, delivering with precision."
