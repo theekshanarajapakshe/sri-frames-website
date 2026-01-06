@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { BRAND_NAME, NAV_ITEMS } from '../constants';
@@ -7,6 +7,7 @@ import { BRAND_NAME, NAV_ITEMS } from '../constants';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -21,6 +22,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav 
+      ref={navRef}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled ? 'glassmorphism py-3' : 'bg-transparent py-5'
       }`}
@@ -67,10 +69,10 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       <div 
-        className={`lg:hidden fixed inset-0 z-40 bg-brand-dark/95 backdrop-blur-xl transition-transform duration-300 ${
+        className={`lg:hidden fixed left-0 right-0 z-60 bg-brand-dark/95 backdrop-blur-xl transition-transform duration-300 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
-        style={{ top: '70px' }}
+        style={{ top: navRef.current ? `${navRef.current.offsetHeight}px` : '70px' }}
       >
         <div className="flex flex-col items-center justify-center h-full space-y-8 p-6">
           {NAV_ITEMS.map((item) => (
