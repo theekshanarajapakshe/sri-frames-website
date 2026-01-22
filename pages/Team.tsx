@@ -1,11 +1,23 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Linkedin, Twitter, Mail, X, Award, Briefcase, Zap } from 'lucide-react';
 import { TEAM, BRAND_NAME } from '../constants';
 import { TeamMember } from '../types';
 
 const Team: React.FC = () => {
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
+  useEffect(() => {
+    // Check if there's a team member to open from localStorage (e.g., from pricing page)
+    const openTeamMember = localStorage.getItem('openTeamMember');
+    if (openTeamMember) {
+      const member = TEAM.find(m => m.id === openTeamMember);
+      if (member) {
+        setSelectedMember(member);
+        localStorage.removeItem('openTeamMember');
+      }
+    }
+  }, []);
 
   return (
     <div className="pb-24">
