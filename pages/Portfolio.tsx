@@ -1,9 +1,108 @@
 
-import React from 'react';
-import { ExternalLink, TrendingUp } from 'lucide-react';
-import { PROJECTS } from '../constants';
+import React, { useEffect } from 'react';
+import { ExternalLink, TrendingUp, Lock } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { PROJECTS, SOCIAL_LINKS } from '../constants';
 
 const Portfolio: React.FC = () => {
+  const navigate = useNavigate();
+  const isRestricted = true; // Set to false when portfolio is ready to be released
+
+  useEffect(() => {
+    if (isRestricted) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isRestricted]);
+
+  if (isRestricted) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center">
+        {/* Blurred Background */}
+        <div className="absolute inset-0 bg-brand-dark/80 backdrop-blur-lg"></div>
+        
+        {/* Red Overlay */}
+        <div className="absolute inset-0 bg-red-500/10"></div>
+
+        {/* Modal Card */}
+        <div className="relative z-10 mx-4 max-w-md w-full animate-fade-in">
+          <div className="glassmorphism rounded-[2rem] border border-red-500/30 p-8 md:p-12 text-center shadow-2xl">
+            {/* Lock Icon */}
+            <div className="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
+              <Lock size={40} className="text-red-500" />
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 text-white">
+              Portfolio Locked
+            </h2>
+
+            {/* Message */}
+            <p className="text-slate-300 mb-10 leading-relaxed text-lg">
+              Due to security and privacy requirements of our clients, this portfolio is accessible only to verified users.
+              <br />
+              <br />
+              <span className="text-slate-400">To get verified, please contact us via WhatsApp or send an inquiry through our contact form.</span>
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col gap-4">
+              <a
+                href={SOCIAL_LINKS.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-green-600/25 hover:scale-105"
+              >
+                Contact via WhatsApp
+              </a>
+              <button
+                onClick={() => navigate('/contact')}
+                className="w-full bg-brand-primary hover:bg-brand-primary/80 text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-brand-primary/25 hover:scale-105"
+              >
+                Send an Inquiry
+              </button>
+            </div>
+
+            {/* Footer Text */}
+            <p className="text-xs text-slate-500 mt-8">
+              Once verified, you'll gain full access to our portfolio.
+            </p>
+          </div>
+        </div>
+
+        {/* Animation Styles */}
+        <style>{`
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+              transform: scale(0.95);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+          .animate-fade-in {
+            animation: fade-in 0.5s ease-out forwards;
+          }
+          @keyframes bounce {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-10px);
+            }
+          }
+          .animate-bounce {
+            animation: bounce 2s infinite;
+          }
+        `}</style>
+      </div>
+    );
+  }
+
   return (
     <div className="pb-24">
       <section className="pt-24 pb-20 bg-brand-dark">
