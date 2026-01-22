@@ -6,6 +6,7 @@ import { BRAND_NAME, SERVICES, PROJECTS, TESTIMONIALS, PRICING, SOCIAL_LINKS } f
 
 const Home: React.FC = () => {
   const [showFeaturedOverlay, setShowFeaturedOverlay] = useState(true);
+  const [showTestimonialsOverlay, setShowTestimonialsOverlay] = useState(true);
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
@@ -233,10 +234,58 @@ const Home: React.FC = () => {
       </section>
 
       {/* Testimonials Preview */}
-      <section className="py-24 bg-brand-primary/5">
-        <div className="container mx-auto px-6">
+      <section className="py-24 bg-brand-primary/5 relative">
+        {/* Light Overlay */}
+        {showTestimonialsOverlay && (
+          <div className="absolute inset-0 z-40 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+            
+            {/* Overlay Box */}
+            <div className="relative z-50 mx-4 max-w-md w-full animate-fade-in">
+              <div className="glassmorphism rounded-[2rem] border border-purple-500/30 p-8 md:p-10 shadow-2xl">
+                {/* Close Button */}
+                <button
+                  onClick={() => setShowTestimonialsOverlay(false)}
+                  className="absolute top-6 right-6 p-2 hover:bg-slate-800 rounded-lg transition-all text-slate-400 hover:text-white"
+                  title="Close overlay"
+                >
+                  <X size={24} />
+                </button>
+
+                {/* Content */}
+                <h2 className="text-3xl font-display font-bold mb-4 pr-10">Client Testimonials</h2>
+                <p className="text-slate-300 mb-8 leading-relaxed">
+                  We value our customers' privacy and security. To protect sensitive business data and maintain confidentiality, we only show detailed client testimonials and case studies to verified users.
+                </p>
+                <p className="text-sm text-slate-400 mb-8 italic">
+                  This is our security policy to ensure client data and company information remain protected.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col gap-3">
+                  <a
+                    href={SOCIAL_LINKS.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-green-600/25 text-center"
+                  >
+                    Get Verified via WhatsApp
+                  </a>
+                  <button
+                    onClick={() => setShowTestimonialsOverlay(false)}
+                    className="w-full bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl font-semibold transition-all"
+                  >
+                    Preview Anyway
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="container mx-auto px-6 relative z-10">
           <h2 className="text-4xl font-display font-bold mb-12 text-center">Loved by Clients</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={`grid md:grid-cols-2 lg:grid-cols-3 gap-8 ${showTestimonialsOverlay ? 'blur-sm pointer-events-none' : ''}`}>
             {TESTIMONIALS.slice(0, 3).map((t) => (
               <div key={t.id} className="p-8 glassmorphism rounded-3xl relative">
                 <Star className="text-brand-primary absolute top-8 right-8" fill="currentColor" size={20} />
@@ -252,6 +301,23 @@ const Home: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Animation Styles */}
+        <style>{`
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+              transform: scale(0.95);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+          .animate-fade-in {
+            animation: fade-in 0.3s ease-out forwards;
+          }
+        `}</style>
       </section>
 
       {/* CTA Section */}
