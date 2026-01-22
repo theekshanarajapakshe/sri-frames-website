@@ -1,9 +1,64 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, Mail, MessageCircle, MapPin, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import { CONTACT_INFO, BRAND_NAME } from '../constants';
 
 const Contact: React.FC = () => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    projectType: 'Website Development',
+    message: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    // Initialize EmailJS
+    emailjs.init('FG3GET6RFSZP1_BJw');
+  }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const templateParams = {
+        to_email: CONTACT_INFO.email,
+        from_name: formData.fullName,
+        from_email: formData.email,
+        project_type: formData.projectType,
+        message: formData.message,
+        reply_to: formData.email
+      };
+
+      await emailjs.send('service_3nqej35', 'template_m713zbt', templateParams);
+      
+      setSubmitted(true);
+      setFormData({
+        fullName: '',
+        email: '',
+        projectType: 'Website Development',
+        message: ''
+      });
+
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      alert('Failed to send inquiry. Please try again.');
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="pb-24">
       <section className="pt-24 pb-20 bg-brand-dark">
@@ -63,20 +118,46 @@ const Contact: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div className="p-12 glassmorphism rounded-[3rem]">
             <h3 className="text-3xl font-display font-bold mb-8">Send a Message</h3>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            {submitted && (
+              <div className="mb-6 p-4 bg-green-500/20 border border-green-500 rounded-xl text-green-400">
+                ✓ Message sent successfully! We'll be in touch soon.
+              </div>
+            )}
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Full Name</label>
-                  <input type="text" className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary" placeholder="Enter your name" />
+                  <input 
+                    type="text" 
+                    name="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary" 
+                    placeholder="Enter your name" 
+                  />
                 </div>
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Email Address</label>
-                  <input type="email" className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary" placeholder="name@company.com" />
+                  <input 
+                    type="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary" 
+                    placeholder="name@company.com" 
+                  />
                 </div>
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Project Type</label>
-                <select className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary">
+                <select 
+                  name="projectType"
+                  value={formData.projectType}
+                  onChange={handleChange}
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary"
+                >
                   <option>Website Development</option>
                   <option>Branding & Design</option>
                   <option>NGO / Institute Solution</option>
@@ -86,10 +167,22 @@ const Contact: React.FC = () => {
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Your Message</label>
-                <textarea rows={5} className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary" placeholder="Tell us about your project..."></textarea>
+                <textarea 
+                  rows={5} 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-slate-900 border border-slate-800 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary" 
+                  placeholder="Tell us about your project..."
+                ></textarea>
               </div>
-              <button className="w-full bg-brand-primary text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-brand-primary/80 transition-all">
-                Send Inquiry <Send size={20} />
+              <button 
+                type="submit"
+                disabled={loading}
+                className="w-full bg-brand-primary text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:bg-brand-primary/80 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? 'Sending...' : 'Send Inquiry'} <Send size={20} />
               </button>
             </form>
           </div>
