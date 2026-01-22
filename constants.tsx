@@ -10,6 +10,14 @@ export const CONTACT_INFO = {
   location: "Colombo, Sri Lanka"
 };
 
+export const SOCIAL_LINKS = {
+  whatsapp: "https://wa.me/94754097421",
+  linkedin: "https://linkedin.com/in/theekshana",
+  twitter: "https://twitter.com/theekshana",
+  facebook: "https://facebook.com/sriframes",
+  instagram: "https://instagram.com/sriframes"
+};
+
 export const NAV_ITEMS: NavItem[] = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
@@ -122,12 +130,15 @@ export const TEAM: TeamMember[] = [
   {
     id: "t1",
     name: "Theekshana Rajapakshe",
-    role: "Founder & Lead Strategist",
-    bio: "Visionary leader with 5+ years of experience in helping local brands reach the global stage.",
-    imageUrl: "/public/images/theekshana.png",
+    role: "CEO & Lead Developer",
+    bio: "Visionary leader with 5+ years of experience in web development.",
+    imageUrl: "/images/theekshana.png",
     specialties: ["Brand Strategy", "Project Management", "Business Growth"],
     experience: "5+ Years",
-    motto: "Leading with vision, delivering with precision."
+    motto: "Leading with vision, delivering with precision.",
+    whatsapp: "https://wa.me/94754097421",
+    linkedin: "https://linkedin.com/in/theekshana",
+    twitter: "https://twitter.com/theekshana"
   },
   {
     id: "t2",
@@ -137,7 +148,10 @@ export const TEAM: TeamMember[] = [
     imageUrl: "https://picsum.photos/seed/team2/400/400",
     specialties: ["User Experience", "Futuristic UI", "Motion Design"],
     experience: "4 Years",
-    motto: "Design is not just what it looks like, it's how it works."
+    motto: "Design is not just what it looks like, it's how it works.",
+    whatsapp: "https://wa.me/94754097421",
+    linkedin: "https://linkedin.com/in/sanuja",
+    twitter: "https://twitter.com/sanuja"
   },
   {
     id: "t3",
@@ -147,17 +161,23 @@ export const TEAM: TeamMember[] = [
     imageUrl: "https://picsum.photos/seed/team3/400/400",
     specialties: ["React & Next.js", "Node.js", "Cloud Infrastructure"],
     experience: "6 Years",
-    motto: "Clean code, powerful solutions, zero limits."
+    motto: "Clean code, powerful solutions, zero limits.",
+    whatsapp: "https://wa.me/94754097421",
+    linkedin: "https://linkedin.com/in/kasun",
+    twitter: "https://twitter.com/kasun"
   },
   {
     id: "t4",
     name: "Sehandu Ganganath",
     role: "Digital Marketing Head",
     bio: "Strategic thinker focused on data-driven growth and impactful social media presence.",
-    imageUrl: "https://picsum.photos/seed/team4/400/400",
+    imageUrl: "/images/sehandu.png",
     specialties: ["SEO & SEM", "Content Strategy", "Performance Marketing"],
     experience: "5 Years",
-    motto: "Connecting brands with the people who love them."
+    motto: "Connecting brands with the people who love them.",
+    whatsapp: "https://wa.me/94754097421",
+    linkedin: "https://linkedin.com/in/sehandu",
+    twitter: "https://twitter.com/sehandu"
   }
 ];
 

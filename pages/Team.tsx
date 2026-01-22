@@ -137,14 +137,14 @@ const Team: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-6">
-                <button className="flex-grow bg-brand-primary hover:bg-brand-primary/80 text-white py-4 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-brand-primary/20">
+                <a href={selectedMember.whatsapp} target="_blank" rel="noopener noreferrer" className="flex-grow bg-brand-primary hover:bg-brand-primary/80 text-white py-4 rounded-2xl font-bold text-lg transition-all shadow-xl shadow-brand-primary/20 text-center">
                   Contact via WhatsApp
-                </button>
+                </a>
                 <div className="flex gap-4">
-                  <a href="#" className="w-14 h-14 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-primary hover:text-white transition-all">
+                  <a href={selectedMember.linkedin} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-primary hover:text-white transition-all">
                     <Linkedin size={24} />
                   </a>
-                  <a href="#" className="w-14 h-14 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-primary hover:text-white transition-all">
+                  <a href={selectedMember.twitter} target="_blank" rel="noopener noreferrer" className="w-14 h-14 rounded-2xl bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-primary hover:text-white transition-all">
                     <Twitter size={24} />
                   </a>
                 </div>

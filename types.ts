@@ -28,6 +28,9 @@ export interface TeamMember {
   specialties?: string[];
   experience?: string;
   motto?: string;
+  whatsapp?: string;
+  linkedin?: string;
+  twitter?: string;
 }
 
 export interface PriceTier {
