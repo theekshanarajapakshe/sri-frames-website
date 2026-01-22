@@ -1,10 +1,11 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Globe, Rocket, ShieldCheck, Heart, Star } from 'lucide-react';
-import { BRAND_NAME, SERVICES, PROJECTS, TESTIMONIALS, PRICING } from '../constants';
+import { ArrowRight, CheckCircle2, Globe, Rocket, ShieldCheck, Heart, Star, X } from 'lucide-react';
+import { BRAND_NAME, SERVICES, PROJECTS, TESTIMONIALS, PRICING, SOCIAL_LINKS } from '../constants';
 
 const Home: React.FC = () => {
+  const [showFeaturedOverlay, setShowFeaturedOverlay] = useState(true);
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
@@ -68,8 +69,8 @@ const Home: React.FC = () => {
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-r from-brand-primary to-brand-secondary opacity-20 blur-2xl rounded-3xl -z-10"></div>
               <div className="grid grid-cols-2 gap-4">
-                <img src="https://picsum.photos/seed/sri1/400/500" alt="Agency Life" className="rounded-2xl shadow-2xl mt-8" />
-                <img src="https://picsum.photos/seed/sri2/400/500" alt="Creative Design" className="rounded-2xl shadow-2xl" />
+                <img src="/images/sl1.png" alt="Agency Life" className="rounded-2xl shadow-2xl mt-8" />
+                <img src="/images/sl2.png" alt="Creative Design" className="rounded-2xl shadow-2xl" />
               </div>
             </div>
           </div>
@@ -136,14 +137,57 @@ const Home: React.FC = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
+      <section className="py-24 relative">
+        {/* Light Overlay */}
+        {showFeaturedOverlay && (
+          <div className="absolute inset-0 z-40 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+            
+            {/* Overlay Box */}
+            <div className="relative z-50 mx-4 max-w-md w-full animate-fade-in">
+              <div className="glassmorphism rounded-[2rem] border border-blue-500/30 p-8 md:p-10 shadow-2xl">
+                {/* Close Button */}
+                <button
+                  onClick={() => setShowFeaturedOverlay(false)}
+                  className="absolute top-6 right-6 p-2 hover:bg-slate-800 rounded-lg transition-all text-slate-400 hover:text-white"
+                  title="Close overlay"
+                >
+                  <X size={24} />
+                </button>
+
+                {/* Content */}
+                <h2 className="text-3xl font-display font-bold mb-4 pr-10">Our Featured Work</h2>
+                <p className="text-slate-300 mb-8 leading-relaxed">
+                  These are select case studies showcasing the successful digital transformations we've accomplished for our clients. Each project represents our commitment to excellence and measurable impact.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col gap-3">
+                  <Link
+                    to="/portfolio"
+                    className="w-full bg-brand-primary hover:bg-brand-primary/80 text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-brand-primary/25 text-center"
+                  >
+                    View Full Portfolio
+                  </Link>
+                  <button
+                    onClick={() => setShowFeaturedOverlay(false)}
+                    className="w-full bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl font-semibold transition-all"
+                  >
+                    Continue Browsing
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-display font-bold mb-4">Our Featured Work</h2>
             <p className="text-slate-400">Success stories of local brands going digital.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className={`grid md:grid-cols-3 gap-8 ${showFeaturedOverlay ? 'blur-sm pointer-events-none' : ''}`}>
             {PROJECTS.slice(0, 3).map((project) => (
               <div key={project.id} className="group relative overflow-hidden rounded-3xl">
                 <img 
@@ -169,6 +213,23 @@ const Home: React.FC = () => {
             </Link>
           </div>
         </div>
+
+        {/* Animation Styles */}
+        <style>{`
+          @keyframes fade-in {
+            from {
+              opacity: 0;
+              transform: scale(0.95);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+          .animate-fade-in {
+            animation: fade-in 0.3s ease-out forwards;
+          }
+        `}</style>
       </section>
 
       {/* Testimonials Preview */}
