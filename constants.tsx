@@ -171,7 +171,7 @@ export const TEAM: TeamMember[] = [
     name: "Sehandu Ganganath",
     role: "Digital Marketing Head",
     bio: "Strategic thinker focused on data-driven growth and impactful social media presence.",
-    imageUrl: "public/images/sehandu.png",
+    imageUrl: "/images/sehandu.png",
     specialties: ["SEO & SEM", "Content Strategy", "Performance Marketing"],
     experience: "5 Years",
     motto: "Connecting brands with the people who love them.",
