@@ -269,14 +269,8 @@ const Home: React.FC = () => {
                     rel="noopener noreferrer"
                     className="w-full bg-green-600 hover:bg-green-700 text-white py-4 rounded-xl font-bold text-lg transition-all shadow-lg shadow-green-600/25 text-center"
                   >
-                    Get Verified via WhatsApp
+                    Contact us via WhatsApp for view client reviews
                   </a>
-                  <button
-                    onClick={() => setShowTestimonialsOverlay(false)}
-                    className="w-full bg-slate-800 hover:bg-slate-700 text-white py-3 rounded-xl font-semibold transition-all"
-                  >
-                    Preview Anyway
-                  </button>
                 </div>
               </div>
             </div>
