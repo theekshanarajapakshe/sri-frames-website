@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { ExternalLink, TrendingUp, Lock } from 'lucide-react';
+import { ExternalLink, TrendingUp, Lock, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { PROJECTS, SOCIAL_LINKS } from '../constants';
 
@@ -28,7 +28,16 @@ const Portfolio: React.FC = () => {
 
         {/* Modal Card */}
         <div className="relative z-10 mx-4 max-w-md w-full animate-fade-in">
-          <div className="glassmorphism rounded-[2rem] border border-red-500/30 p-8 md:p-12 text-center shadow-2xl">
+          <div className="glassmorphism rounded-[2rem] border border-red-500/30 p-8 md:p-12 text-center shadow-2xl relative">
+            {/* Close Button */}
+            <button
+              onClick={() => navigate('/')}
+              className="absolute top-6 right-6 p-2 hover:bg-slate-800 rounded-lg transition-all text-slate-400 hover:text-white"
+              title="Close and go to home"
+            >
+              <X size={24} />
+            </button>
+
             {/* Lock Icon */}
             <div className="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
               <Lock size={40} className="text-red-500" />
