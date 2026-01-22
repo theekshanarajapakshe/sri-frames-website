@@ -185,20 +185,20 @@ export const PRICING: PriceTier[] = [
   {
     id: "pr1",
     name: "Starter Package",
-    price: "45k LKR",
+    price: "25,000 LKR",
     features: ["Responsive 1-Page Site", "Contact Form", "Basic SEO", "Mobile Optimized", "Hosting Support"]
   },
   {
     id: "pr2",
     name: "Professional Package",
-    price: "85k LKR",
+    price: "55,000 LKR",
     features: ["Up to 5 Pages", "Custom UI Design", "CMS Integration", "Google Analytics", "3 Months Support"],
     isPopular: true
   },
   {
     id: "pr3",
     name: "Premium Package",
-    price: "150k+ LKR",
+    price: "100,000+ LKR",
     features: ["E-commerce / Advanced App", "Premium Graphics", "Speed Optimization", "Payment Gateway", "Full Digital Identity"]
   },
   {
