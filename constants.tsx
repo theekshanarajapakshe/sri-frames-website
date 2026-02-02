@@ -154,19 +154,6 @@ export const TEAM: TeamMember[] = [
     twitter: "https://twitter.com/sanuja"
   },
   {
-    id: "t3",
-    name: "Kasun Jayawardena",
-    role: "Lead Full-Stack Developer",
-    bio: "Expert in building robust and scalable web architectures using cutting-edge tech stacks.",
-    imageUrl: "https://picsum.photos/seed/team3/400/400",
-    specialties: ["React & Next.js", "Node.js", "Cloud Infrastructure"],
-    experience: "6 Years",
-    motto: "Clean code, powerful solutions, zero limits.",
-    whatsapp: "https://wa.me/94754097421",
-    linkedin: "https://linkedin.com/in/kasun",
-    twitter: "https://twitter.com/kasun"
-  },
-  {
     id: "t4",
     name: "Sehandu Ganganath",
     role: "Digital Marketing Head",
