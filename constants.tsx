@@ -4,14 +4,14 @@ import { NavItem, Service, Project, TeamMember, PriceTier, Testimonial, FAQItem 
 export const BRAND_NAME = "SRI Frames";
 export const TAGLINE = "Building Digital Futures";
 export const CONTACT_INFO = {
-  phone: "+94 75 409 7421",
-  whatsapp: "+94 75 409 7421",
-  email: "theekshana.scout@gmail.com",
+  phone: "+94 77 732 5765",
+  whatsapp: "+94 77 732 5765",
+  email: "inquiries.sriframes@gmail.com",
   location: "Colombo, Sri Lanka"
 };
 
 export const SOCIAL_LINKS = {
-  whatsapp: "https://wa.me/94754097421",
+  whatsapp: "https://wa.me/+94777325765",
   linkedin: "https://linkedin.com/in/theekshana",
   twitter: "https://twitter.com/theekshana",
   facebook: "https://facebook.com/sriframes",
@@ -145,11 +145,11 @@ export const TEAM: TeamMember[] = [
     name: "Sanuja Kaveen",
     role: "Senior UI/UX Designer",
     bio: "Passionate about creating futuristic and user-centric interfaces that tell a story.",
-    imageUrl: "https://picsum.photos/seed/team2/400/400",
+    imageUrl: "/images/sanuja.png",
     specialties: ["User Experience", "Futuristic UI", "Motion Design"],
     experience: "4 Years",
     motto: "Design is not just what it looks like, it's how it works.",
-    whatsapp: "https://wa.me/94754097421",
+    whatsapp: "https://wa.me/+94779889094",
     linkedin: "https://linkedin.com/in/sanuja",
     twitter: "https://twitter.com/sanuja"
   },
@@ -162,7 +162,7 @@ export const TEAM: TeamMember[] = [
     specialties: ["SEO & SEM", "Content Strategy", "Performance Marketing"],
     experience: "5 Years",
     motto: "Connecting brands with the people who love them.",
-    whatsapp: "https://wa.me/94754097421",
+    whatsapp: "https://wa.me/+94777325765",
     linkedin: "https://linkedin.com/in/sehandu",
     twitter: "https://twitter.com/sehandu"
   }
